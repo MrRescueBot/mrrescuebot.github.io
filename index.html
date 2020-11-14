@@ -1,0 +1,60 @@
+<style>
+	body {
+		color: darkblue;
+		background: lightblue;
+	}
+	h1 {
+		color: darkgreen;
+		background: lightgreen;
+	}
+	li:hover {
+		color: yellow;
+	}
+</style>
+
+<h1>Page 1</h1>
+
+<p>Hello! my full name is Boulder Hughes</p>
+
+<p>My favourite games:</p>
+
+<ul id='game-list'>
+	<li id='ray'>Rayman Legends</li>
+	<li><a href='http://minecraft.net'>Minecraft</a></li>
+	<li>Pokemon</li>
+</ul>
+
+<p id='show'></p>
+
+<h1>Add a game link</h1>
+
+<p>Game name: <input type='text' id='game'><br />
+Game URL: <input type='text' id='game-link'><br /><button id='add'>Add</button></p>
+
+<h1>Calculator</h1>
+
+<input type='text' id='calc'> = <span id='eval'></span>
+
+
+<script>
+	document.getElementById('ray').addEventListener('click', () => {
+		document.getElementById('show').appendChild(document.createTextNode('O course! '));
+	});
+	
+	document.getElementById('calc').addEventListener('keyup', e => {
+		document.getElementById('eval').innerText = eval(e.target.value);
+	});
+	
+	document.getElementById('add').addEventListener('click', () => {
+		const game = document.getElementById('game');
+		const url = document.getElementById('game-link');
+		const link = document.createElement('a');
+		link.href = url.value;
+		link.innerText = game.value;
+		const item = document.createElement('li');
+		item.appendChild(link);
+		document.getElementById('game-list').appendChild(item);
+		game.value = '';
+		url.value = '';
+	});
+</script>
